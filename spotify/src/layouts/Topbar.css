@@ -1,0 +1,60 @@
+.topbar {
+    height: 48px;
+    background-color: #121212;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.spotify-logo-bounding-box {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.spotify-icon {
+    height: 32px;
+    fill: white;
+}
+
+.search-bounding-box {
+    width: 478px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.home-icon-bounding-box {
+    border-radius: 100%;
+    background-color: #1f1f1f;
+    height: 48px;
+    width: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-icon {
+    padding: 20px;
+}
+
+.search-bar-bounding-box {
+    border-radius: 500px;
+    background-color: #1f1f1f;
+    height: 48px;
+    width: 474px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-left: 8px;
+}
+
+.search-icon {
+    padding: 12px;
+}
+
+.setting-bounding-box {
+
+}

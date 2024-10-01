@@ -1,0 +1,36 @@
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header header header header header header"
+        "menu main main main right right"
+        "menu footer footer footer footer footer";
+    grid-template-rows: 48px;
+    gap: 10px;
+    background-color: #121212;
+    padding: 10px;
+    height: calc(100vh - 20px);
+    width: calc(100vw - 20px);
+}
+
+.grid-container > div {
+    background-color: green;
+    text-align: center;
+    font-size: 30px;
+}
+
+.grid-header {
+    grid-area: header;
+}
+
+.grid-menu {
+    grid-area: menu;
+}
+.grid-main {
+    grid-area: main;
+}
+.grid-right {
+    grid-area: right;
+}
+.grid-footer {
+    grid-area: footer;
+}
