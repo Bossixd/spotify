@@ -47,12 +47,35 @@
     width: 474px;
     display: flex;
     align-items: center;
-    justify-content: left;
+    justify-content: space-between;
     margin-left: 8px;
 }
 
 .search-icon {
-    padding: 12px;
+    padding-left: 12px;
+}
+
+.search-bar {
+    width: 362px;
+    height: 48px;
+    border: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    background: transparent;
+    /* background-color: red; */
+    color: white;
+}
+
+.search-bar:focus {
+    outline: none;
+}
+
+.browse-icon {
+    padding-left: 12px;
+    margin-right: 16px;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-color: #807c7c;
 }
 
 .setting-bounding-box {

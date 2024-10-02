@@ -1,5 +1,5 @@
 import React from "react";
-import Topbar from "./Topbar";
+import Topbar from "../features/topbar-navigation/index";
 import './HomeLayout.css';
 
 function HomeLayout() {
