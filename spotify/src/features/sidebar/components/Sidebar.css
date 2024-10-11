@@ -1,0 +1,126 @@
+.sidebar {
+    background-color: var(--color-dark-grey);
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.sidebar-top {
+    height: 40px;
+    padding-top: 12px;
+    padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 24px;
+    margin-right: 12px;
+    transition: all ease 0.3s;
+}
+
+.sidebar-your-library-bounding-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.sidebar-your-library-bounding-box:hover > .sidebar-your-library-text {
+    color: #fff;
+    transition: all ease 0.3s;
+}
+
+.sidebar-your-library-text {
+    color: var(--color-grey);
+    font-family: var(--font-3);
+    font-size: 16px;
+    transition: all ease 0.3s;
+}
+
+.sidebar-your-library-bounding-box:hover .library-icon {
+    fill: #fff;
+    transition: all ease 0.3s;
+}
+
+.library-icon {
+    fill: var(--color-grey);
+    transition: all ease 0.3s;
+}
+
+
+.library-logo-bounding-box {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.sidebar-top .add-icon {
+    fill: var(--color-grey);
+    transition: all ease 0.4s;
+}
+
+.sidebar-top .arrow-icon {
+    fill: var(--color-grey);
+    transition: all ease 0.4s;
+}
+
+.sidebar-add-arrow-bounding-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-add-arrow {
+    padding: 8px;
+    margin: 4px;
+    border-radius: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-add-arrow:hover {
+    background-color: var(--color-light-grey);
+    transition: all ease 0.03s;
+}
+
+.sidebar-add-arrow:hover .add-icon {
+    fill: var(--color-white);
+    transition: all ease 0.4s;
+}
+
+.sidebar-add-arrow:hover .arrow-icon {
+    fill: var(--color-white);
+    transition: all ease 0.4s;
+}
+
+.sidebar-nav {
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    padding-left: 6px;
+}
+
+.sidebar-nav-button {
+    background: #ffffff1a;
+	color: inherit;
+	border: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-left: 10px;
+    border-radius: 500px;
+}
+
+.sidebar-nav-button > div {
+    font-family: var(--font-1);
+    font-size: 14px;
+}

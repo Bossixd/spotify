@@ -19,3 +19,36 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
+
+@font-face {
+    font-family: "Circular-Black";
+    src: url("assets/fonts/lineto-circular-black.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Circular-Bold";
+    src: url("assets/fonts/lineto-circular-bold.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Circular-Medium";
+    src: url("assets/fonts/lineto-circular-medium.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: "Circular-Book";
+    src: url("assets/fonts/lineto-circular-book.ttf") format("truetype");
+}
+
+:root {
+    --font-4: Circular-Black;
+    --font-3: Circular-Bold;
+    --font-2: Circular-Medium;
+    --font-1: Circular-Book;
+
+    --color-grey: #b3b3b3;
+    --color-light-grey: #1e1e1e;
+    --color-dark-grey: #121212;
+    --color-white: #fff;
+    --color-background: #000;
+}

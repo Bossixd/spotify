@@ -1,12 +1,11 @@
 import React from "react";
 import "./Topbar.css";
 
-import spotifyIcon from "../../../assets/spotify-icon.svg";
-import homeIcon from "../../../assets/home-icon.svg";
-import searchIcon from "../../../assets/search-icon.svg";
-import browseIcon from "../../../assets/browse-icon.svg";
+import spotifyIcon from "../../../assets/svg/spotify-icon.svg";
+import homeIcon from "../../../assets/svg/home-icon.svg";
+import browseIcon from "../../../assets/svg/browse-icon.svg";
 
-import data from "../../../data/data.json";
+import SearchIcon from "../../../assets/svg/search-icon";
 
 function Topbar() {
     return (
@@ -19,7 +18,9 @@ function Topbar() {
                     <img src={homeIcon} className="home-icon" alt="" />
                 </div>
                 <div className="search-bar-bounding-box">
-                    <img src={searchIcon} className="search-icon" alt="" />
+                    <div className="search-icon">
+                        <SearchIcon />
+                    </div>
                     <form>
                         <input
                             className="search-bar"
@@ -27,7 +28,7 @@ function Topbar() {
                             // id="fname"
                             // name="fname"
                             // value="John"
-                            placeholder={data.topbar["search-bar-placeholder"]}
+                            placeholder={"What do you want to play?"}
                         />
                     </form>
                     <img src={browseIcon} className="browse-icon" alt="" />

@@ -2,18 +2,18 @@
     display: grid;
     grid-template-areas:
         "header header header header header header"
-        "menu main main main right right"
-        "menu footer footer footer footer footer";
+        "side main main main right right"
+        "side footer footer footer footer footer";
     grid-template-rows: 48px;
+    grid-template-columns: 412px;
     gap: 10px;
-    background-color: #121212;
+    background-color: #000000;
     padding: 10px;
     height: calc(100vh - 20px);
     width: calc(100vw - 20px);
 }
 
 .grid-container > div {
-    background-color: green;
     text-align: center;
     font-size: 30px;
 }
@@ -22,8 +22,8 @@
     grid-area: header;
 }
 
-.grid-menu {
-    grid-area: menu;
+.grid-side {
+    grid-area: side;
 }
 .grid-main {
     grid-area: main;
