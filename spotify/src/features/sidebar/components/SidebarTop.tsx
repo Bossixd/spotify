@@ -14,10 +14,10 @@ function SidebarTop() {
                 <div className="sidebar-your-library-text">Your Library</div>
             </button>
             <div className="sidebar-add-arrow-bounding-box">
-                <div className="sidebar-add-arrow">
+                <div className="sidebar-button">
                     <AddIcon/>
                 </div>
-                <div className="sidebar-add-arrow">
+                <div className="sidebar-button">
                     <ArrowIcon/>
                 </div>
             </div>

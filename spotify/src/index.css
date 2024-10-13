@@ -47,8 +47,13 @@ code {
     --font-1: Circular-Book;
 
     --color-grey: #b3b3b3;
+    --color-highlight-grey: #323232;
     --color-light-grey: #1e1e1e;
     --color-dark-grey: #121212;
     --color-white: #fff;
     --color-background: #000;
+}
+
+.hidden {
+    display: none;
 }
