@@ -2,8 +2,7 @@
     display: grid;
     grid-template-areas:
         "header header header header header header"
-        "side main main main right right"
-        "side footer footer footer footer footer";
+        "side main main main right right";
     grid-template-rows: 48px;
     grid-template-columns: 412px;
     gap: 10px;
@@ -30,7 +29,4 @@
 }
 .grid-right {
     grid-area: right;
-}
-.grid-footer {
-    grid-area: footer;
 }

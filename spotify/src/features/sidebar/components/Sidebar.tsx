@@ -2,14 +2,14 @@ import "./Sidebar.css";
 
 import SidebarTop from "./SidebarTop";
 import SidebarNav from "./SidebarNav";
-import SidebarSearch from "./SidebarSearch";
+import SidebarSearchArea from "./SidebarSearchArea";
 
 function Sidebar() {
     return (
         <div className="sidebar">
             <SidebarTop />
             <SidebarNav />
-            <SidebarSearch />
+            <SidebarSearchArea />
         </div>
     );
 }

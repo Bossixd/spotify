@@ -137,6 +137,13 @@
 
 /* Sidebar Search */
 
+.sidebar-search-area {
+    width: 100%;
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .sidebar-search {
     display: flex;
     align-items: center;
@@ -227,4 +234,68 @@
 
 .sidebar-recent:hover .sidebar-recent-text {
     color: var(--color-white);
+}
+
+/* Sidebar Search Result Area */
+
+.sidebar-search-results {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: left;
+}
+
+/* Sidebar Search Items */
+
+.sidebar-search-item {
+    width: calc(100% - 4px);
+    height: 65px;
+    padding-left: 4px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.pin-icon {
+    fill: var(--color-bright-green);
+}
+
+.searchbar-search-item-text {
+    font-size: 16px;
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.searchbar-search-item-title {
+    width: 100%;
+    display: flex;
+    align-items: left;
+    padding-bottom: 6px;
+    font-family: var(--font-1);
+}
+
+.searchbar-search-item-description {
+    display: flex;
+    align-items: left;
+    font-size: 14px;
+    color: var(--color-grey);
+    font-family: var(--font-1);
+}
+
+.searchbar-search-item-pin {
+    padding-right: 6px;
+}
+
+.searchbar-search-item-image {
+    width: 48px;
+    height: 48px;
+    border-radius: 6px;
+    margin-right: 12px;
+    margin-left: 8px;
 }
