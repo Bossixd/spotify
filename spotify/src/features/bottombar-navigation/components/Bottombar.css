@@ -6,12 +6,14 @@
     bottom: 0;
     display: flex;
     justify-content: space-between;
+    padding-bottom: 10px;
 }
 
 /* Bottombar Song Details */
 
 .bottombar-song {
     display: flex;
+    width: 314px;
 }
 
 .bottombar-song-image {
@@ -62,12 +64,120 @@
     transform: scale(1.05);
 }
 
-.bottombar-volume {
+
+.bottombar-controls .input-bar {
     appearance: none;
     border: 0;
     width: 8.7vw;
     max-width: 93px;
-    background: var(--color-grey);
+    background: linear-gradient(
+        to right,
+        var(--color-white) 0%,
+        var(--color-white) var(--volume-bar-transform),
+        hsla(0,0%,100%,.3) var(--volume-bar-transform),
+        hsla(0,0%,100%,.3) 100%
+    );
+    height: 4px;
+    border-radius: 10px;
+}
+
+.bottombar-controls .input-bar:hover {
+    background: linear-gradient(
+        to right,
+        var(--color-dark-green) 0%,
+        var(--color-dark-green) var(--volume-bar-transform),
+        hsla(0,0%,100%,.3) var(--volume-bar-transform),
+        hsla(0,0%,100%,.3) 100%
+    );
+}
+
+.bottombar-controls .input-bar:hover::-webkit-slider-thumb {
+    visibility: visible;
+}
+
+.bottombar-controls .input-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    visibility: hidden;
+    width: 12px;
+    height: 12px;
+    border-radius: 10px;
+    background: var(--color-white);
+    cursor: pointer;
+}
+
+/* Bottombar Song Controls */
+
+.bottombar-audio-controls {
+    max-width: 600px;
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 4px;
+}
+
+.bottombar-audio-controls-player-button {
+    width: 32px;
+    height: 32px;
+    background-color: var(--color-white);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 12px;
+}
+
+.bottombar-audio-controls-player {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.bottombar-audio-controls-player svg {
+    margin: 12px;
+    fill: var(--color-grey);
+}
+
+.bottombar-audio-controls-player svg:hover {
+    fill: var(--color-white);
+}
+
+.bottombar-audio-controls-player-button svg {
+    margin: 0px;
+    fill: var(--color-black);
+}
+
+.bottombar-audio-controls-player-button:hover {
+    margin: 0px;
+    fill: var(--color-black);
+    transform: scale(1.05);
+    margin: 12px;
+}
+
+.bottombar-audio-controls-player-button svg:hover {
+    fill: var(--color-black);
+    transform: scale(1.05);
+}
+
+.bottombar-audio-controls-progress {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-1);
+    font-size: 12px;
+    color: var(--color-grey);
+}
+
+.bottombar-audio-controls .input-bar {
+    appearance: none;
+    border: 0;
+    width: 70%;
     background: linear-gradient(
         to right,
         var(--color-white) 0%,
@@ -77,9 +187,11 @@
     );
     height: 4px;
     border-radius: 10px;
+    margin-left: 6px;
+    margin-right: 6px;
 }
 
-.bottombar-volume:hover {
+.bottombar-audio-controls .input-bar:hover {
     background: linear-gradient(
         to right,
         var(--color-dark-green) 0%,
@@ -89,11 +201,11 @@
     );
 }
 
-.bottombar-volume:hover::-webkit-slider-thumb {
+.bottombar-audio-controls .input-bar:hover::-webkit-slider-thumb {
     visibility: visible;
 }
 
-.bottombar-volume::-webkit-slider-thumb {
+.bottombar-audio-controls .input-bar::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;
     visibility: hidden;

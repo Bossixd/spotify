@@ -12,9 +12,17 @@ import VolumeIcon from "../../../assets/svg/volume-icon";
 import MiniplayerIcon from "../../../assets/svg/miniplayer-icon";
 import FullscreenIcon from "../../../assets/svg/fullscreen-icon";
 
+import PlayIcon from "../../../assets/svg/play-icon";
+import NextSongIcon from "../../../assets/svg/next-song-icon";
+import LastSongIcon from "../../../assets/svg/last-song-icon";
+import ShuffleIcon from "../../../assets/svg/shuffle-icon";
+import RepeatIcon from "../../../assets/svg/repeat-icon";
+
+import InputBar from "./InputBar";
+
 function Sidebar() {
-    const [volumeSelected, setVolumeSelected] = useState(false);
     const [volume, setVolume] = useState(50);
+    const [progress, setProgress] = useState(50);
     return (
         <div className="bottombar">
             <div className="bottombar-song">
@@ -31,23 +39,27 @@ function Sidebar() {
                     </div>
                 </div>
             </div>
+            <div className="bottombar-audio-controls">
+                <div className="bottombar-audio-controls-player">
+                    <ShuffleIcon />
+                    <LastSongIcon />
+                    <div className="bottombar-audio-controls-player-button">
+                        <PlayIcon />
+                    </div>
+                    <NextSongIcon />
+                    <RepeatIcon />
+                </div>
+                <div className="bottombar-audio-controls-progress">
+                    0:02 <InputBar style={{"--progress-bar-transform": String(progress) + "%" } as any} setValue={setProgress}/> 3:15
+                </div>
+            </div>
             <div className="bottombar-controls">
                 <NowPlayingIcon />
                 <LyricsIcon />
                 <QueueIcon />
                 <ConnectToDeviceIcon />
                 <VolumeIcon />
-                <input
-                    className="bottombar-volume"
-                    type="range"
-                    min="0"
-                    max="100"
-                    step="1"
-                    onChange={(e) => {
-                        setVolume(parseInt(e.target.value));
-                    }}
-                    style={{'--progress-bar-transform': String(volume) + "%"} as any}
-                />
+                <InputBar style={{"--volume-bar-transform": String(volume) + "%" } as any} setValue={setVolume}/>
                 <MiniplayerIcon />
                 <FullscreenIcon />
             </div>
