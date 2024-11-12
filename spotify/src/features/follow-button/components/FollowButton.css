@@ -1,0 +1,15 @@
+.follow-button {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 15px;
+    border: 1px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-radius: 50px;
+    /* background-color: rebeccapurple; */
+    font-family: var(--font-3);
+    font-size: 14px;
+    color: var(--color-white);
+}

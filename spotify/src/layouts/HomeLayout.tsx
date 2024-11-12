@@ -2,6 +2,7 @@ import React from "react";
 import Topbar from "../features/topbar-navigation/index";
 import Sidebar from "../features/sidebar/index";
 import Bottombar from "../features/bottombar-navigation/index";
+import NowPlaying from "../features/now-playing-rightbar";
 import "./HomeLayout.css";
 
 function HomeLayout() {
@@ -15,7 +16,9 @@ function HomeLayout() {
                     <Sidebar />
                 </div>
                 <div className="grid-main">Main</div>
-                <div className="grid-right">Right</div>
+                <div className="grid-right">
+                    <NowPlaying />
+                </div>
             </div>
             <Bottombar />
         </div>

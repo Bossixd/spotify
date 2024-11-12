@@ -1,10 +1,10 @@
 .grid-container {
     display: grid;
     grid-template-areas:
-        "header header header header header header"
-        "side main main main right right";
+        "header header header"
+        "side main right";
     grid-template-rows: 48px;
-    grid-template-columns: 412px;
+    grid-template-columns: 420px auto 420px;
     gap: 10px;
     background-color: #000000;
     padding: 10px;
