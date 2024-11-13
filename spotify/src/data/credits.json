@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Rudeus Greyrat",
+        "description": "Main Artist, Producer",
+        "followable": true
+    },
+    {
+        "name": "Eris Greyrat",
+        "description": "Troublemaker",
+        "followable": false
+    },
+    {
+        "name": "Ruijerd Superdia",
+        "description": "Animal keeper",
+        "followable": false
+    }
+]

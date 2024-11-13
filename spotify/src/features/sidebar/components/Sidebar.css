@@ -280,6 +280,11 @@
     font-family: var(--font-1);
 }
 
+.nowplaying-queue-song {
+    display: flex;
+    align-items: center;
+}
+
 .searchbar-search-item-description {
     display: flex;
     align-items: left;
