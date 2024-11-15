@@ -20,7 +20,12 @@ import RepeatIcon from "../../../assets/svg/repeat-icon";
 
 import InputBar from "./InputBar";
 
-function Sidebar() {
+interface Props {
+    playing: boolean;
+    setPlaying: (play: boolean) => void;
+}
+
+function Sidebar({ playing, setPlaying }: Props) {
     const [volume, setVolume] = useState(50);
     const [progress, setProgress] = useState(50);
     return (
@@ -43,14 +48,24 @@ function Sidebar() {
                 <div className="bottombar-audio-controls-player">
                     <ShuffleIcon />
                     <LastSongIcon />
-                    <div className="bottombar-audio-controls-player-button">
+                    <div className="bottombar-audio-controls-player-button" onClick={() => setPlaying(!playing)}>
                         <PlayIcon />
                     </div>
                     <NextSongIcon />
                     <RepeatIcon />
                 </div>
                 <div className="bottombar-audio-controls-progress">
-                    0:02 <InputBar style={{"--progress-bar-transform": String(progress) + "%" } as any} setValue={setProgress}/> 3:15
+                    0:02{" "}
+                    <InputBar
+                        style={
+                            {
+                                "--progress-bar-transform":
+                                    String(progress) + "%",
+                            } as any
+                        }
+                        setValue={setProgress}
+                    />{" "}
+                    3:15
                 </div>
             </div>
             <div className="bottombar-controls">
@@ -59,7 +74,14 @@ function Sidebar() {
                 <QueueIcon />
                 <ConnectToDeviceIcon />
                 <VolumeIcon />
-                <InputBar style={{"--volume-bar-transform": String(volume) + "%" } as any} setValue={setVolume}/>
+                <InputBar
+                    style={
+                        {
+                            "--volume-bar-transform": String(volume) + "%",
+                        } as any
+                    }
+                    setValue={setVolume}
+                />
                 <MiniplayerIcon />
                 <FullscreenIcon />
             </div>
