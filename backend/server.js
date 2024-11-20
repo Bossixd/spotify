@@ -9,10 +9,10 @@ For Certificate authority download: https://docs.aws.amazon.com/AmazonRDS/latest
 const express = require("express");
 const app = express();
 
-const cors = require('cors');
+const cors = require("cors");
 app.use(cors());
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -59,12 +59,8 @@ app.get("/", (req, res) => {
     res.json({ message: "Complete" });
 });
 
-// Endpoint to fetch the MP3 file
-app.post("/get-audio", async (req, res) => {
+app.post("/get-metadata", async (req, res) => {
     const body = req.body;
-    const bucketName = "pattakit-spotify";
-
-    console.log("Called");
 
     try {
         const result = await client.query("SELECT * FROM songs where id = $1", [
@@ -74,17 +70,35 @@ app.post("/get-audio", async (req, res) => {
         if (result.rowCount === 0) {
             res.status(404).json({ error: "Song not found" });
         }
+        res.json(result.rows[0]);
+        console.log(result.rows[0]);
+    } catch (err) {
+        res.status(500).json({
+            error: "Failed to retrieve data from database",
+        });
+    }
+});
 
-        const audioPath = `songs/audio/${result.rows[0].audio_link}.mp3`;
-        const imagePath = `songs/image/${result.rows[0].image_link}.mp3`;
+// Endpoint to fetch the MP3 file
+app.post("/get-audio", async (req, res) => {
+    const body = req.body;
+    console.log(body);
+    const bucketName = "pattakit-spotify";
+
+    try {
+        console.log("Error Here!");
+        const audioPath = `songs/audio/${body.audio_link}.mp3`;
+        console.log(audioPath);
 
         const params = {
             Bucket: bucketName,
             Key: audioPath,
         };
-
+        console.log("Error Here!");
         s3.getObject(params, (err, data) => {
+            console.log("Whatttttt");
             if (err) {
+                console.log("Bruhhh");
                 res.status(500).send("Error fetching file from S3");
                 console.error(err);
                 return;
@@ -92,17 +106,17 @@ app.post("/get-audio", async (req, res) => {
 
             res.setHeader("Content-Type", "audio/mpeg");
             res.setHeader("Content-Length", data.ContentLength);
+            console.log(data.ContentLength);
             res.send(data.Body);
-            // res.send({
-            //   metadata: result.rows[0],
-            //   audio: new Blob([data.Body])
-            // })
         });
+        console.log("Error Here!");
     } catch (err) {
+        console.log("Error!!!");
         res.status(500).json({
             error: "Failed to retrieve data from database",
         });
     }
+    console.log("Error Here!");
 });
 
 app.listen(3001);

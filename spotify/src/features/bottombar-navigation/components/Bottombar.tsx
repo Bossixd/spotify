@@ -28,9 +28,10 @@ interface Props {
     progress: number;
     setProgress: (progress: number) => void;
     maxProgress: number;
+    metadata: any;
 }
 
-function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress }: Props) {
+function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, metadata }: Props) {
     const [volume, setVolume] = useState(50);
     
     return (
@@ -42,7 +43,7 @@ function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress }: Pr
                 />
                 <div className="bottombar-song-details">
                     <div className="bottombar-song-details-title">
-                        {current["title"]}
+                        {metadata.title}
                     </div>
                     <div className="bottombar-song-details-author">
                         {current["author"]}
@@ -65,7 +66,7 @@ function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress }: Pr
                         style={
                             {
                                 "--progress-bar-transform":
-                                    String(progress) + "%",
+                                    String(progress / maxProgress * 100) + "%",
                             } as any
                         }
                         setValue={setProgress}

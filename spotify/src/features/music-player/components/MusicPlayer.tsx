@@ -32,9 +32,8 @@ function MusicPlayer({ playing, songId, audio, setAudio, setProgress }: Props) {
     useEffect(() => {
         if (audio !== null) {
             const updateProgress = () => {
-                if (audio && audio.duration > 0) {
-                    const progress = (audio.currentTime / audio.duration) * 100;
-                    setProgress(progress);
+                if (audio) {
+                    setProgress(audio.currentTime);
                 }
             };
 

@@ -15,6 +15,7 @@ function HomeLayout() {
     const [currentSongId, setCurrentSongId] = useState("");
     const [audioUrl, setAudioUrl] = useState("");
     const [metadata, setMetadata] = useState({});
+    const [duration, setDuration] = useState(0);
 
     useEffect(() => {
         if (audio !== null) {
@@ -23,10 +24,11 @@ function HomeLayout() {
                 currentSongId,
                 "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
                 setAudioUrl,
+                metadata,
                 setMetadata
             );
+            setDuration(audio.duration);
         }
-        console.log(metadata);
     }, [audio]);
 
     useEffect(() => {
@@ -64,6 +66,7 @@ function HomeLayout() {
                 maxProgress={
                     audio !== null && audio.duration ? audio.duration : 0
                 }
+                metadata={metadata}
             />
         </div>
     );

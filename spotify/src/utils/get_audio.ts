@@ -5,22 +5,34 @@ const get_audio = (
     currentSongId: string,
     songId: string,
     setAudioUrl: (audioUrl: string) => void,
+    metadata: any,
     setMetadata: (metadata: any) => void
 ) => {
+    let metadataBuffer;
     if (currentSongId !== songId && audio !== null) {
-        console.log("Here");
-        fetch("http://localhost:3001/get-audio", {
+        fetch("http://localhost:3001/get-metadata", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                song_id: "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
+                song_id: songId,
             }),
+        }).then((response) => response.json()).then((data) => {
+            setMetadata(data);
+            metadataBuffer = data;
+            return fetch("http://localhost:3001/get-audio", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    audio_link: metadataBuffer.audio_link,
+                }),
+            })
         })
             .then((response) => response.blob())
             .then((blob) => {
-                console.log("Response: " + blob);
                 const audioUrl = URL.createObjectURL(blob);
                 audio.src = audioUrl;
                 audio.load();
