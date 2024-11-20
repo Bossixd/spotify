@@ -20,14 +20,19 @@ import RepeatIcon from "../../../assets/svg/repeat-icon";
 
 import InputBar from "./InputBar";
 
+import number_to_string from "../../../utils/second_to_string";
+
 interface Props {
     playing: boolean;
     setPlaying: (play: boolean) => void;
+    progress: number;
+    setProgress: (progress: number) => void;
+    maxProgress: number;
 }
 
-function Sidebar({ playing, setPlaying }: Props) {
+function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress }: Props) {
     const [volume, setVolume] = useState(50);
-    const [progress, setProgress] = useState(50);
+    
     return (
         <div className="bottombar">
             <div className="bottombar-song">
@@ -55,7 +60,7 @@ function Sidebar({ playing, setPlaying }: Props) {
                     <RepeatIcon />
                 </div>
                 <div className="bottombar-audio-controls-progress">
-                    0:02{" "}
+                    {number_to_string(progress)}{" "}
                     <InputBar
                         style={
                             {
@@ -64,8 +69,9 @@ function Sidebar({ playing, setPlaying }: Props) {
                             } as any
                         }
                         setValue={setProgress}
+                        value={progress}
                     />{" "}
-                    3:15
+                    {number_to_string(maxProgress)}
                 </div>
             </div>
             <div className="bottombar-controls">

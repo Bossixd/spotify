@@ -4,10 +4,11 @@ import { useState } from "react";
 
 interface props {
     style: String;
-    setValue: (volume: number) => void;
+    value?: number;
+    setValue?: (volume: number) => void;
 }
 
-function InputBar({style, setValue}: props) {
+function InputBar({ style, value, setValue }: props) {
     return (
         <input
             className="input-bar"
@@ -15,9 +16,11 @@ function InputBar({style, setValue}: props) {
             min="0"
             max="100"
             step="1"
-            onChange={(e) => {
-                setValue(parseInt(e.target.value));
-            }}
+            // onChange={(e) => {
+            //     if (setValue)
+            //         setValue(parseInt(e.target.value));
+            // }}
+            value={value}
             style={style as any}
         />
     );
