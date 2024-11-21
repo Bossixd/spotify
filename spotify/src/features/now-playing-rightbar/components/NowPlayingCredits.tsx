@@ -4,7 +4,11 @@ import FollowButton from "../../follow-button/index";
 
 import credits from "../../../data/credits.json";
 
-function NowPlayingCredits() {
+interface Props {
+    metadata: any;
+}
+
+function NowPlayingCredits({ metadata }: Props) {
     return (
         <div className="nowplaying-credits">
             <div className="nowplaying-credits-credits">
@@ -14,7 +18,7 @@ function NowPlayingCredits() {
             {credits.map((person) => (
                 <div className="nowplaying-credits-person">
                     <div className="nowplaying-credits-person-info">
-                        <div className="name">{person.name}</div>
+                        <div className="name">{metadata.name}</div>
                         <div className="description">{person.description}</div>
                     </div>
                     {person.followable && <FollowButton />}

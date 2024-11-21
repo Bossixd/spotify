@@ -14,8 +14,8 @@ function HomeLayout() {
     const [progress, setProgress] = React.useState(0);
     const [currentSongId, setCurrentSongId] = useState("");
     const [audioUrl, setAudioUrl] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
     const [metadata, setMetadata] = useState({});
-    const [duration, setDuration] = useState(0);
 
     useEffect(() => {
         if (audio !== null) {
@@ -24,10 +24,10 @@ function HomeLayout() {
                 currentSongId,
                 "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
                 setAudioUrl,
+                setImageUrl,
                 metadata,
                 setMetadata
             );
-            setDuration(audio.duration);
         }
     }, [audio]);
 
@@ -55,7 +55,9 @@ function HomeLayout() {
                 </div>
                 <div className="grid-main">Main</div>
                 <div className="grid-right">
-                    <NowPlaying />
+                    <NowPlaying 
+                        metadata={metadata}
+                    />
                 </div>
             </div>
             <Bottombar
@@ -67,6 +69,7 @@ function HomeLayout() {
                     audio !== null && audio.duration ? audio.duration : 0
                 }
                 metadata={metadata}
+                imageUrl={imageUrl}
             />
         </div>
     );

@@ -5,12 +5,13 @@ const get_audio = (
     currentSongId: string,
     songId: string,
     setAudioUrl: (audioUrl: string) => void,
+    setImageUrl: (imageUrl: string) => void,
     metadata: any,
     setMetadata: (metadata: any) => void
 ) => {
-    let metadataBuffer;
+    let metadataBuffer: any;
     if (currentSongId !== songId && audio !== null) {
-        fetch("http://localhost:3001/get-metadata", {
+        fetch("http://localhost:3001/song/get-metadata", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -18,24 +19,43 @@ const get_audio = (
             body: JSON.stringify({
                 song_id: songId,
             }),
-        }).then((response) => response.json()).then((data) => {
-            setMetadata(data);
-            metadataBuffer = data;
-            return fetch("http://localhost:3001/get-audio", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    audio_link: metadataBuffer.audio_link,
-                }),
-            })
         })
+            .then((response) => response.json())
+            .then((data) => {
+                setMetadata(data);
+                metadataBuffer = data;
+                return fetch("http://localhost:3001/song/get-audio", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        audio_link: metadataBuffer.audio_link,
+                    }),
+                });
+            })
             .then((response) => response.blob())
             .then((blob) => {
                 const audioUrl = URL.createObjectURL(blob);
                 audio.src = audioUrl;
                 audio.load();
+            })
+            .then(() => {
+                return fetch("http://localhost:3001/song/get-image", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        image_link: metadataBuffer.image_link,
+                    }),
+                });
+            })
+            .then((response) => response.blob())
+            .then((blob) => {
+                const imageUrl = URL.createObjectURL(blob);
+                setImageUrl(imageUrl);
+                console.log(imageUrl);
             })
             .catch((error) => {
                 console.error("Error fetching audio:", error);

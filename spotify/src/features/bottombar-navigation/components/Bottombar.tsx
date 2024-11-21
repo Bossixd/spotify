@@ -29,9 +29,10 @@ interface Props {
     setProgress: (progress: number) => void;
     maxProgress: number;
     metadata: any;
+    imageUrl: string;
 }
 
-function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, metadata }: Props) {
+function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, metadata, imageUrl }: Props) {
     const [volume, setVolume] = useState(50);
     
     return (
@@ -39,14 +40,14 @@ function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, meta
             <div className="bottombar-song">
                 <img
                     className="bottombar-song-image"
-                    src={require("../../../assets/alan-walker.jpg")}
+                    src={imageUrl}
                 />
                 <div className="bottombar-song-details">
                     <div className="bottombar-song-details-title">
                         {metadata.title}
                     </div>
                     <div className="bottombar-song-details-author">
-                        {current["author"]}
+                        {metadata["name"]}
                     </div>
                 </div>
             </div>
