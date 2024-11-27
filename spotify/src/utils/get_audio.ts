@@ -6,6 +6,7 @@ const get_audio = (
     songId: string,
     setAudioUrl: (audioUrl: string) => void,
     setImageUrl: (imageUrl: string) => void,
+    setProfileUrl: (profileUrl: string) => void,
     metadata: any,
     setMetadata: (metadata: any) => void
 ) => {
@@ -55,7 +56,22 @@ const get_audio = (
             .then((blob) => {
                 const imageUrl = URL.createObjectURL(blob);
                 setImageUrl(imageUrl);
-                console.log(imageUrl);
+            })
+            .then(() => {
+                return fetch("http://localhost:3001/artists/get-image", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        image_link: metadataBuffer.profile_image_link,
+                    }),
+                });
+            })
+            .then((response) => response.blob())
+            .then((blob) => {
+                const profileUrl = URL.createObjectURL(blob);
+                setProfileUrl(profileUrl);
             })
             .catch((error) => {
                 console.error("Error fetching audio:", error);

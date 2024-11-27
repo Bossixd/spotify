@@ -15,6 +15,7 @@ function HomeLayout() {
     const [currentSongId, setCurrentSongId] = useState("");
     const [audioUrl, setAudioUrl] = useState("");
     const [imageUrl, setImageUrl] = useState("");
+    const [profileUrl, setProfileUrl] = useState("");
     const [metadata, setMetadata] = useState({});
 
     useEffect(() => {
@@ -25,6 +26,7 @@ function HomeLayout() {
                 "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
                 setAudioUrl,
                 setImageUrl,
+                setProfileUrl,
                 metadata,
                 setMetadata
             );
@@ -57,6 +59,8 @@ function HomeLayout() {
                 <div className="grid-right">
                     <NowPlaying 
                         metadata={metadata}
+                        imageUrl={imageUrl}
+                        profileUrl={profileUrl}
                     />
                 </div>
             </div>

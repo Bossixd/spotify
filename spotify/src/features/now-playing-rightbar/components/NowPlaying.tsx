@@ -5,16 +5,17 @@ import { useRef, useState } from "react";
 import NowPlayingHeader from "./NowPlayingHeader";
 import NowPlayingTitle from "./NowPlayingTitle";
 
-import songBackground from "../../../assets/song-background.png";
 import NowPlayingArtist from "./NowPlayingArtist";
 import NowPlayingCredits from "./NowPlayingCredits";
 import NowPlayingQueue from "./NowPlayingQueue";
 
 interface Props {
     metadata: any;
+    imageUrl: string
+    profileUrl: string
 }
 
-function NowPlaying({ metadata }: Props) {
+function NowPlaying({ metadata, imageUrl, profileUrl }: Props) {
     const elementRef = useRef<HTMLDivElement>(null);
     const [scroll, setScroll] = useState(0);
     return (
@@ -27,7 +28,7 @@ function NowPlaying({ metadata }: Props) {
             >
                 <img
                     className="nowplaying-image"
-                    src={songBackground}
+                    src={imageUrl}
                     alt="Song Image"
                 />{" "}
                 {/* Need to change this depending on song image */}
@@ -36,12 +37,13 @@ function NowPlaying({ metadata }: Props) {
                     metadata={metadata}/>
                 <NowPlayingArtist 
                     metadata={metadata}
+                    profileUrl={profileUrl}
                 />
                 <NowPlayingCredits 
                     metadata={metadata}
                 />
                 <NowPlayingQueue />
-                <div className="nowplaying-seperator-bottom" />
+                <div className="nowplaying-seperator-bottom"/>
             </div>
         </div>
     );

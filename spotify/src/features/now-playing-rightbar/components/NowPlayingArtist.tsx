@@ -1,18 +1,17 @@
 import "./NowPlaying.css";
 
-import songAuthor from "../../../assets/song-author.png";
-
 import FollowButton from "../../follow-button/index";
 
 interface Props {
     metadata: any;
+    profileUrl: string;
 }
 
-function NowPlayingAuthor({ metadata }: Props) {
+function NowPlayingAuthor({ metadata, profileUrl }: Props) {
     return (
         <div className="nowplaying-author">
             <div className="nowplaying-author-about">About the author</div>
-            <img src={songAuthor} />
+            <img src={profileUrl} />
             <div className="nowplaying-author-description">
                 <div className="nowplaying-author-description-name">
                     {metadata.name}

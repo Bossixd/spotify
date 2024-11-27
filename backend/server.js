@@ -88,7 +88,7 @@ app.post("/song/get-audio", async (req, res) => {
     const bucketName = "pattakit-spotify";
 
     try {
-        const audioPath = `songs/audio/${body.audio_link}.mp3`;
+        const audioPath = `songs/audio/${body.audio_link}`;
 
         const params = {
             Bucket: bucketName,
@@ -118,7 +118,39 @@ app.post("/song/get-image", async (req, res) => {
     const bucketName = "pattakit-spotify";
 
     try {
-        const audioPath = `songs/image/${body.image_link}.jpg`;
+        const audioPath = `songs/image/${body.image_link}`;
+
+        const params = {
+            Bucket: bucketName,
+            Key: audioPath,
+        };
+
+        s3.getObject(params, (err, data) => {
+            if (err) {
+                console.log(err);
+                res.status(500).send("Error fetching file from S3");
+                return;
+            }
+
+            res.setHeader("Content-Type", "audio/mpeg");
+            res.setHeader("Content-Length", data.ContentLength);
+            res.send(data.Body);
+        });
+    } catch (err) {
+        console.log("Error");
+        res.status(500).json({
+            error: "Failed to retrieve data from database",
+        });
+    }
+});
+
+// Endpoint to fetch metadata
+app.post("/artists/get-image", async (req, res) => {
+    const body = req.body;
+    const bucketName = "pattakit-spotify";
+
+    try {
+        const audioPath = `artists/profile_image/${body.image_link}`;
         console.log(body.image_link);
 
         const params = {
