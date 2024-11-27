@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import MainSongs from "../features/main-songs/index";
 import Topbar from "../features/topbar-navigation/index";
 import Sidebar from "../features/sidebar/index";
 import Bottombar from "../features/bottombar-navigation/index";
@@ -55,7 +56,9 @@ function HomeLayout() {
                 <div className="grid-side">
                     <Sidebar />
                 </div>
-                <div className="grid-main">Main</div>
+                <div className="grid-main">
+                    <MainSongs />
+                </div>
                 <div className="grid-right">
                     <NowPlaying 
                         metadata={metadata}

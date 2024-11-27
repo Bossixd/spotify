@@ -1,0 +1,22 @@
+.main-songs {
+    width: 100%;
+    height: 100%;
+    /* height: calc(100vh - 82px); */
+    border-radius: 10px;
+    overflow-y: scroll;
+    background-color: var(--color-dark-grey);
+}
+
+
+/* Main Songs Header */
+
+.main-songs-header {
+    height: 64px;
+    background-color: red;
+    display: flex;
+    align-items: left;
+}
+
+.main-songs-header * {
+    height: 32px;
+}

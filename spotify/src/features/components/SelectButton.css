@@ -1,0 +1,22 @@
+.select-button {
+    background: #ffffff1a;
+	color: inherit;
+	border: none;
+    padding-left: 12px;
+    padding-right: 12px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    margin-right: 10px;
+    border-radius: 500px;
+    transition: all ease 0.3s;
+}
+
+.select-button > div {
+    font-family: var(--font-1);
+    font-size: 14px;
+}
+
+.select-button:hover {
+    background: var(--color-highlight-grey);
+    transition: all ease 0.3s;
+}
