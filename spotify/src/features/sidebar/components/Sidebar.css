@@ -42,13 +42,13 @@
     transition: all ease 0.3s;
 }
 
-.sidebar-your-library-bounding-box:hover .library-icon {
-    fill: #fff;
+.sidebar-your-library-bounding-box * {
+    fill: var(--color-grey);
     transition: all ease 0.3s;
 }
 
-.library-icon {
-    fill: var(--color-grey);
+.sidebar-your-library-bounding-box:hover * {
+    fill: #fff;
     transition: all ease 0.3s;
 }
 

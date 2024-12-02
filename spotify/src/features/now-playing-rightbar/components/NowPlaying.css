@@ -65,10 +65,41 @@
     padding-bottom: 8px;
 }
 
+.nowplaying-header-button-holder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .nowplaying-header-div-text svg {
     fill: var(--color-grey);
-    padding: 16px;
 }
+
+.nowplaying-header-div-text button {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+}
+
+.nowplaying-header-button {
+    margin-left: 4px;
+    margin-right: 4px;
+    border-radius: 500px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nowplaying-header-div-text .nowplaying-header-button:hover {
+    transition-duration: 500ms;
+    background-color: var(--color-highlight-grey);
+}
+
+.nowplaying-header-div-text .nowplaying-header-button:hover svg {
+    fill: var(--color-white);
+}
+
 
 /* Now Playing Seperator */
 

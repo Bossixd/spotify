@@ -4,10 +4,14 @@ import data from "../../../data/search.json";
 import SidebarSearch from "./SidebarSearch";
 import SidebarSearchItem from "./SidebarSearchItem";
 
-function SidebarSearchArea() {
+interface Props {
+    sideBar: boolean;
+}
+
+function SidebarSearchArea({ sideBar }: Props) {
     return (
         <div className="sidebar-search-area">
-            <SidebarSearch />
+            {sideBar && <SidebarSearch />}
             <div className="sidebar-search-results">
                 {data.map((item) => (
                     <SidebarSearchItem
@@ -16,6 +20,7 @@ function SidebarSearchArea() {
                         type={item.type}
                         comment={item.comment}
                         imagePath={item.imagePath}
+                        sideBar={sideBar}
                     />
                 ))}
             </div>

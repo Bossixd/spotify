@@ -1,29 +1,43 @@
 import "./Sidebar.css";
 
 import LibraryIcon from "../../../assets/svg/library-icon";
+import LibraryOpenIcon from "../../../assets/svg/library-open-icon";
 import AddIcon from "../../../assets/svg/add-icon";
 import ArrowIcon from "../../../assets/svg/arrow-icon";
 
-function SidebarTop() {
+interface Props {
+    sideBar: boolean;
+    setSideBar: (sideBar: boolean) => void;
+}
+
+function SidebarTop({ sideBar, setSideBar }: Props) {
     return (
         <div className="sidebar-top">
-            <button className="sidebar-your-library-bounding-box">
+            <button
+                className="sidebar-your-library-bounding-box"
+                onClick={() => setSideBar(!sideBar)}
+            >
                 <div className="library-logo-bounding-box">
-                    <LibraryIcon/>
+                    {sideBar ? <LibraryIcon /> : <LibraryOpenIcon />}
                 </div>
-                <div className="sidebar-your-library-text">Your Library</div>
+                {sideBar && (
+                    <div className="sidebar-your-library-text">
+                        Your Library
+                    </div>
+                )}
             </button>
-            <div className="sidebar-add-arrow-bounding-box">
-                <div className="sidebar-button">
-                    <AddIcon/>
+            {sideBar && (
+                <div className="sidebar-add-arrow-bounding-box">
+                    <div className="sidebar-button">
+                        <AddIcon />
+                    </div>
+                    <div className="sidebar-button">
+                        <ArrowIcon />
+                    </div>
                 </div>
-                <div className="sidebar-button">
-                    <ArrowIcon/>
-                </div>
-            </div>
+            )}
         </div>
     );
 }
-
 
 export default SidebarTop;

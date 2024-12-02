@@ -17,6 +17,8 @@ import NextSongIcon from "../../../assets/svg/next-song-icon";
 import LastSongIcon from "../../../assets/svg/last-song-icon";
 import ShuffleIcon from "../../../assets/svg/shuffle-icon";
 import RepeatIcon from "../../../assets/svg/repeat-icon";
+import UpIcon from "../../../assets/svg/up-icon";
+import DownIcon from "../../../assets/svg/down-icon";
 
 import InputBar from "./InputBar";
 
@@ -30,18 +32,46 @@ interface Props {
     maxProgress: number;
     metadata: any;
     imageUrl: string;
+    nowPlayingBar: boolean;
+    setNowPlayingBar: (playing: boolean) => void;
 }
 
-function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, metadata, imageUrl }: Props) {
+function Sidebar({
+    playing,
+    setPlaying,
+    progress,
+    setProgress,
+    maxProgress,
+    metadata,
+    imageUrl,
+    nowPlayingBar,
+    setNowPlayingBar,
+}: Props) {
     const [volume, setVolume] = useState(50);
-    
+    const [songImageHover, setSongImageHover] = useState(false);
+
     return (
         <div className="bottombar">
             <div className="bottombar-song">
-                <img
-                    className="bottombar-song-image"
-                    src={imageUrl}
-                />
+                <div>
+                    <img
+                        onClick={() => setNowPlayingBar(!nowPlayingBar)}
+                        onMouseEnter={() => setSongImageHover(true)}
+                        onMouseLeave={() => setSongImageHover(false)}
+                        className="bottombar-song-image"
+                        src={imageUrl}
+                    ></img>
+                    {songImageHover && (
+                        <div
+                            className="bottombar-song-image-collapse"
+                            onClick={() => setNowPlayingBar(!nowPlayingBar)}
+                            onMouseEnter={() => setSongImageHover(true)}
+                            onMouseLeave={() => setSongImageHover(false)}
+                        >
+                            {nowPlayingBar ? <DownIcon /> : <UpIcon />}
+                        </div>
+                    )}
+                </div>
                 <div className="bottombar-song-details">
                     <div className="bottombar-song-details-title">
                         {metadata.title}
@@ -55,7 +85,10 @@ function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, meta
                 <div className="bottombar-audio-controls-player">
                     <ShuffleIcon />
                     <LastSongIcon />
-                    <div className="bottombar-audio-controls-player-button" onClick={() => setPlaying(!playing)}>
+                    <div
+                        className="bottombar-audio-controls-player-button"
+                        onClick={() => setPlaying(!playing)}
+                    >
                         <PlayIcon />
                     </div>
                     <NextSongIcon />
@@ -67,7 +100,8 @@ function Sidebar({ playing, setPlaying, progress, setProgress, maxProgress, meta
                         style={
                             {
                                 "--progress-bar-transform":
-                                    String(progress / maxProgress * 100) + "%",
+                                    String((progress / maxProgress) * 100) +
+                                    "%",
                             } as any
                         }
                         setValue={setProgress}

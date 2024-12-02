@@ -215,3 +215,37 @@
     background: var(--color-white);
     cursor: pointer;
 }
+
+/* Image Collapse Button */
+
+.bottombar-song-image-collapse {
+    position: absolute;
+    top: 8px;
+    left: 44px;
+    width: 20px;
+    height: 20px;
+    z-index: 1;
+    background-color: var(--color-dark-grey);
+    border-radius: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottombar-song-image-collapse:hover {
+    width: 24px;
+    height: 24px;
+    top: 6px;
+    left: 42px;
+}
+
+.bottombar-song-image-collapse svg {
+    opacity: 1.0;
+    fill: var(--color-grey);
+}
+
+.bottombar-song-image-collapse svg:hover {
+    fill: var(--color-white);
+    height: 18px;
+    width: 18px;
+}

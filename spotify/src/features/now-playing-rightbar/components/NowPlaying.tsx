@@ -13,14 +13,15 @@ interface Props {
     metadata: any;
     imageUrl: string
     profileUrl: string
+    setNowPlayingBar: (play: boolean) => void
 }
 
-function NowPlaying({ metadata, imageUrl, profileUrl }: Props) {
+function NowPlaying({ metadata, imageUrl, profileUrl, setNowPlayingBar }: Props) {
     const elementRef = useRef<HTMLDivElement>(null);
     const [scroll, setScroll] = useState(0);
     return (
         <div>
-            <NowPlayingHeader scroll={scroll} />
+            <NowPlayingHeader scroll={scroll} setNowPlayingBar={setNowPlayingBar}/>
             <div
                 className="nowplaying"
                 ref={elementRef}

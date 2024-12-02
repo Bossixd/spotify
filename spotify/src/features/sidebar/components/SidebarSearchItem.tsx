@@ -8,6 +8,7 @@ interface SidebarSearchItemProps {
     type: string;
     comment: string;
     imagePath: string;
+    sideBar: boolean;
 }
 
 function SidebarSearchItem({
@@ -16,6 +17,7 @@ function SidebarSearchItem({
     type,
     comment,
     imagePath,
+    sideBar,
 }: SidebarSearchItemProps) {
     return (
         <div className="sidebar-search-item">
@@ -24,17 +26,19 @@ function SidebarSearchItem({
                 src={require("../../../assets/alan-walker.jpg")}
                 alt="Logo"
             />
-            <div className="searchbar-search-item-text">
-                <div className="searchbar-search-item-title">{title}</div>
-                <div className="searchbar-search-item-description">
-                    {pinned ? (
-                        <div className="searchbar-search-item-pin">
-                            <PinIcon />
-                        </div>
-                    ) : null}
-                    {type} • {comment}
+            {sideBar && (
+                <div className="searchbar-search-item-text">
+                    <div className="searchbar-search-item-title">{title}</div>
+                    <div className="searchbar-search-item-description">
+                        {pinned ? (
+                            <div className="searchbar-search-item-pin">
+                                <PinIcon />
+                            </div>
+                        ) : null}
+                        {type} • {comment}
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
     );
 }

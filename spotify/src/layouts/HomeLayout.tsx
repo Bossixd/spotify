@@ -40,6 +40,28 @@ function HomeLayout() {
         }
     }, [audioUrl]);
 
+    const [nowPlayingBar, setNowPlayingBar] = useState(true);
+    const [nowPlayingGrid, setNowPlayingGrid] = useState("right");
+
+    useEffect(() => {
+        if (!nowPlayingBar) {
+            setNowPlayingGrid("main");
+        } else {
+            setNowPlayingGrid("right");
+        }
+    }, [nowPlayingBar]);
+
+    const [sideBar, setSideBar] = useState(true);
+    const [sideBarGrid, setSideBarGrid] = useState("420");
+
+    useEffect(() => {
+        if (!sideBar) {
+            setSideBarGrid("72");
+        } else {
+            setSideBarGrid("420");
+        }
+    }, [sideBar]);
+
     return (
         <div>
             <MusicPlayer
@@ -49,23 +71,32 @@ function HomeLayout() {
                 setAudio={setAudio}
                 setProgress={setProgress}
             />
-            <div className="grid-container">
+            <div
+                className="grid-container"
+                style={{
+                    gridTemplateAreas: `"header header header" "side main ${nowPlayingGrid}"`,
+                    gridTemplateColumns: `${sideBarGrid}px auto 420px`,
+                }}
+            >
                 <div className="grid-header">
                     <Topbar />
                 </div>
                 <div className="grid-side">
-                    <Sidebar />
+                    <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
                 </div>
                 <div className="grid-main">
                     <MainSongs />
                 </div>
-                <div className="grid-right">
-                    <NowPlaying 
-                        metadata={metadata}
-                        imageUrl={imageUrl}
-                        profileUrl={profileUrl}
-                    />
-                </div>
+                {nowPlayingBar && (
+                    <div className="grid-right">
+                        <NowPlaying
+                            metadata={metadata}
+                            imageUrl={imageUrl}
+                            profileUrl={profileUrl}
+                            setNowPlayingBar={setNowPlayingBar}
+                        />
+                    </div>
+                )}
             </div>
             <Bottombar
                 playing={playing}
@@ -77,6 +108,8 @@ function HomeLayout() {
                 }
                 metadata={metadata}
                 imageUrl={imageUrl}
+                nowPlayingBar={nowPlayingBar}
+                setNowPlayingBar={setNowPlayingBar}
             />
         </div>
     );
