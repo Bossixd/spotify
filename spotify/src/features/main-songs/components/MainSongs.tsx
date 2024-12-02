@@ -2,7 +2,9 @@
 import "./MainSongs.css";
 import MainSongsHeader from "./MainSongsHeader";
 import MainSongsItems from "./MainSongsItems";
-import MainSongsRecs from "./MainSongsRecs";
+import MainSongsRec from "./MainSongsRec";
+
+import recommendations from "../../../data/recommendations.json"
 
 function MainSongs() {
     return (
@@ -11,7 +13,10 @@ function MainSongs() {
             <div className="main-songs-main">
                 <div className="spacer"/>
                 <MainSongsItems />
-                <MainSongsRecs />
+                <MainSongsRec title="Recommended for you" recommendations={recommendations}/>
+                <MainSongsRec title="Recommended for you" recommendations={recommendations}/>
+                <MainSongsRec title="Recommended for you" recommendations={recommendations}/>
+                <MainSongsRec title="Recommended for you" recommendations={recommendations}/>
             </div>
         </div>
     );

@@ -10,7 +10,7 @@
 /* Main Songs Header */
 
 .main-songs .spacer {
-    height: 64px;
+    height: 32px;
 }
 
 .main-songs-header {
@@ -30,7 +30,11 @@
 .main-songs-main {
     padding-left: 16px;
     padding-right: 16px;
-    height: 100%;
+    /* height: 100%; */
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    overflow: scroll;
 }
 
 /* Main Songs Items */
@@ -86,6 +90,8 @@
     display: flex;
     align-items: start;
     padding-left: 8px;
+    font-family: var(--font-3);
+    font-size: 24px;
 }
 
 .main-songs-rec-items {
@@ -114,7 +120,6 @@
     height: 36px;
     overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-    line-clamp: 2;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
 }

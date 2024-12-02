@@ -10,7 +10,7 @@ interface Props {
     }[];
 }
 
-function MainSongsRecSection({ title, recommendations }: Props) {
+function MainSongsRec({ title, recommendations }: Props) {
     return (
         <div className="main-songs-rec-section">
             <div className="main-songs-rec-title">{title}</div>
@@ -29,4 +29,4 @@ function MainSongsRecSection({ title, recommendations }: Props) {
     );
 }
 
-export default MainSongsRecSection;
+export default MainSongsRec;
