@@ -107,8 +107,8 @@
 }
 
 .main-songs-rec-item-image {
-    width: 156px;
-    height: 156px;
+    width: var(--image-width);
+    height: var(--image-width);
     background-color: blue;
 }
 
