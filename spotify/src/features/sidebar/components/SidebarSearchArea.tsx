@@ -8,6 +8,7 @@ interface Props {
     sideBar: boolean;
 }
 
+
 function SidebarSearchArea({ sideBar }: Props) {
     return (
         <div className="sidebar-search-area">

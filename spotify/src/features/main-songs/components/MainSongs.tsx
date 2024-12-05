@@ -6,53 +6,67 @@ import MainSongsRec from "./MainSongsRec";
 
 import recommendations from "../../../data/recommendations.json";
 
-function MainSongs() {
-    const mainRef = useRef<HTMLDivElement>(null);
+import useWindowDimensions from "../../../utils/use_window_dimensions";
+
+interface Props {
+    nowPlayingBarOpen: boolean
+    sideBarOpen: boolean
+};
+
+function MainSongs({ nowPlayingBarOpen, sideBarOpen }: Props) {
     const [width, setWidth] = useState(0);
-
-    const resizeObserver = new ResizeObserver((entries) => {
-        setWidth(entries[0].contentRect.width);
-        console.log(width);
-    });
+    const windowDimensions = useWindowDimensions();
 
     useEffect(() => {
-        const mainElement = document.querySelector(".main-songs");
-        console.log(mainElement);
-        if (mainElement) {
-            resizeObserver.observe(mainElement);
-        }
-    }, [resizeObserver]);
-
-    useEffect(() => {
-        if (mainRef && mainRef.current) {
-            setWidth(mainRef.current.offsetWidth);
-            console.log(mainRef.current.offsetWidth);
-        }
-        console.log("Here");
-    }, []);
+        setWidth(windowDimensions.width - (sideBarOpen ? 420 : 72) - (nowPlayingBarOpen ? 420 : 0) - 16 - 10 - 16 - 32);
+    }, [windowDimensions, sideBarOpen, nowPlayingBarOpen]);
 
     return (
-        <div className="main-songs" ref={mainRef}>
-            <MainSongsHeader /> {/* Fixed at the TOP!!!!! */}
+        <div className="main-songs">
+            <MainSongsHeader />
             <div className="main-songs-main">
-                <div className="spacer" />
                 <MainSongsItems />
                 <MainSongsRec
                     title="Recommended for you"
                     recommendations={recommendations}
+                    width={width}
                 />
                 <MainSongsRec
                     title="Recommended for you"
                     recommendations={recommendations}
+                    width={width}
                 />
                 <MainSongsRec
                     title="Recommended for you"
                     recommendations={recommendations}
+                    width={width}
                 />
                 <MainSongsRec
                     title="Recommended for you"
                     recommendations={recommendations}
+                    width={width}
                 />
+                <MainSongsRec
+                    title="Recommended for you"
+                    recommendations={recommendations}
+                    width={width}
+                />
+                <MainSongsRec
+                    title="Recommended for you"
+                    recommendations={recommendations}
+                    width={width}
+                />
+                <MainSongsRec
+                    title="Recommended for you"
+                    recommendations={recommendations}
+                    width={width}
+                />
+                <MainSongsRec
+                    title="Recommended for you"
+                    recommendations={recommendations}
+                    width={width}
+                />
+                <div className="spacer"/>
             </div>
         </div>
     );

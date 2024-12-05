@@ -85,7 +85,10 @@ function HomeLayout() {
                     <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
                 </div>
                 <div className="grid-main">
-                    <MainSongs />
+                    <MainSongs 
+                        nowPlayingBarOpen={nowPlayingBar}
+                        sideBarOpen={sideBar}
+                    />
                 </div>
                 {nowPlayingBar && (
                     <div className="grid-right">
