@@ -12,9 +12,21 @@ interface Props {
     nowPlayingBarOpen: boolean;
     sideBarOpen: boolean;
     recommendations: any;
+    allImages: any;
+    setAllImages: (allImages: any) => void;
+    allMetadata: any;
+    setAllMetadata: (allMetadata: any) => void;
 }
 
-function MainSongs({ nowPlayingBarOpen, sideBarOpen, recommendations }: Props) {
+function MainSongs({
+    nowPlayingBarOpen,
+    sideBarOpen,
+    recommendations,
+    allImages,
+    setAllImages,
+    allMetadata,
+    setAllMetadata,
+}: Props) {
     const [width, setWidth] = useState(0);
     const windowDimensions = useWindowDimensions();
 
@@ -30,24 +42,21 @@ function MainSongs({ nowPlayingBarOpen, sideBarOpen, recommendations }: Props) {
         );
     }, [windowDimensions, sideBarOpen, nowPlayingBarOpen]);
 
-    console.log(recommendations);
-
     return (
         <div className="main-songs">
             <MainSongsHeader />
             <div className="main-songs-main">
                 <MainSongsItems />
-                {recommendations.forEach((recommendation: any) => (
+                {recommendations.map((recommendation: any) => (
                     <MainSongsRec
                         recommendation={recommendation}
                         width={width}
+                        allImages={allImages}
+                        setAllImages={setAllImages}
+                        allMetadata={allMetadata}
+                        setAllMetadata={setAllMetadata}
                     />
                 ))}
-                <MainSongsRec
-                    // title="Recommended for you"
-                    recommendation={recommendations[0]}
-                    width={width}
-                />
                 <div className="spacer" />
             </div>
         </div>

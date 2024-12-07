@@ -9,6 +9,9 @@ import MusicPlayer from "../features/music-player";
 
 import get_audio from "../utils/get_audio";
 import get_recommendations from "../utils/get_recommendations";
+import get_song_image from "../utils/get_song_image";
+import get_song_metadata from "../utils/get_song_metadata";
+import { get } from "http";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -69,9 +72,26 @@ function HomeLayout() {
         get_recommendations(setRecommendations);
     }, []);
 
-    useEffect(() => {
-        console.log(recommendations);
-    }, [recommendations]);
+    const [allImages, setAllImages] = useState({});
+    const [allMetadata, setAllMetadata] = useState<any>({});
+
+    // useEffect(() => {
+    //     get_song_metadata("44a075b3-3526-40f1-ab97-dacfb9041c13", setAllMetadata);
+    //     get_song_metadata("6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc", setAllMetadata);
+    //     get_song_metadata("45c0abdd-7a90-4e85-8e41-df8606dea75b", setAllMetadata);
+    // }, []);
+
+    // useEffect(() => {
+    //     if (allMetadata["44a075b3-3526-40f1-ab97-dacfb9041c13"]) {
+    //         get_song_image("44a075b3-3526-40f1-ab97-dacfb9041c13", allMetadata["44a075b3-3526-40f1-ab97-dacfb9041c13"].image_link, setAllImages);
+    //     }
+    //     if (allMetadata["6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"]) {
+    //         get_song_image("6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc", allMetadata["6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"].image_link, setAllImages);
+    //     }
+    //     if (allMetadata["45c0abdd-7a90-4e85-8e41-df8606dea75b"]) {
+    //         get_song_image("45c0abdd-7a90-4e85-8e41-df8606dea75b", allMetadata["45c0abdd-7a90-4e85-8e41-df8606dea75b"].image_link, setAllImages);
+    //     }
+    // }, [allMetadata]);
 
     return (
         <div>
@@ -100,6 +120,10 @@ function HomeLayout() {
                         nowPlayingBarOpen={nowPlayingBar}
                         sideBarOpen={sideBar}
                         recommendations={recommendations}
+                        allImages={allImages}
+                        setAllImages={setAllImages}
+                        allMetadata={allMetadata}
+                        setAllMetadata={setAllMetadata}
                     />
                 </div>
                 {nowPlayingBar && (

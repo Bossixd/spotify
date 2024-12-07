@@ -103,7 +103,8 @@
 .main-songs-rec-item-image {
     width: var(--image-width);
     height: var(--image-width);
-    background-color: blue;
+    object-fit: cover;
+    border-radius: 4px;
 }
 
 .main-songs-rec-item-detail {
