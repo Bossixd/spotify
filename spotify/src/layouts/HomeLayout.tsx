@@ -8,6 +8,7 @@ import "./HomeLayout.css";
 import MusicPlayer from "../features/music-player";
 
 import get_audio from "../utils/get_audio";
+import get_recommendations from "../utils/get_recommendations";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -24,7 +25,7 @@ function HomeLayout() {
             const getAudioData = get_audio(
                 audio,
                 currentSongId,
-                "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
+                "44a075b3-3526-40f1-ab97-dacfb9041c13",
                 setAudioUrl,
                 setImageUrl,
                 setProfileUrl,
@@ -62,11 +63,21 @@ function HomeLayout() {
         }
     }, [sideBar]);
 
+    const [recommendations, setRecommendations] = useState([]);
+
+    useEffect(() => {
+        get_recommendations(setRecommendations);
+    }, []);
+
+    useEffect(() => {
+        console.log(recommendations);
+    }, [recommendations]);
+
     return (
         <div>
             <MusicPlayer
                 playing={playing}
-                songId="6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"
+                songId="44a075b3-3526-40f1-ab97-dacfb9041c13"
                 audio={audio}
                 setAudio={setAudio}
                 setProgress={setProgress}
@@ -88,6 +99,7 @@ function HomeLayout() {
                     <MainSongs 
                         nowPlayingBarOpen={nowPlayingBar}
                         sideBarOpen={sideBar}
+                        recommendations={recommendations}
                     />
                 </div>
                 {nowPlayingBar && (
