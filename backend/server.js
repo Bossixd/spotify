@@ -63,16 +63,20 @@ app.get("/", (req, res) => {
 app.post("/song/get-metadata", async (req, res) => {
     const body = req.body;
 
+    console.log("Song Id: " + body.song_id);
+
     try {
-        const result = await client.query("SELECT * FROM songs JOIN artists ON songs.artist_id = artists.id WHERE songs.id = $1", [
-            body.song_id,
-        ]);
+        const result = await client.query(
+            "SELECT * FROM songs JOIN artists ON songs.artist_id = artists.id WHERE songs.id = $1",
+            [body.song_id]
+        );
 
         result.rows[0].about = result.rows[0].about.toString();
 
         if (result.rowCount === 0) {
             res.status(404).json({ error: "Song not found" });
         }
+        console.log(result.rows[0]);
         res.json(result.rows[0]);
     } catch (err) {
         res.status(500).json({
@@ -84,7 +88,8 @@ app.post("/song/get-metadata", async (req, res) => {
 // Endpoint to fetch the MP3 file
 app.post("/song/get-audio", async (req, res) => {
     const body = req.body;
-    console.log(body);
+    console.log("Audio Link: " + body.audio_link);
+
     const bucketName = "pattakit-spotify";
 
     try {
@@ -101,11 +106,12 @@ app.post("/song/get-audio", async (req, res) => {
                 return;
             }
 
-            res.setHeader("Content-Type", "image/jpeg");
+            res.setHeader("Content-Type", "image/mpeg");
             res.setHeader("Content-Length", data.ContentLength);
             res.send(data.Body);
         });
     } catch (err) {
+        console.log("Error Get Audio");
         res.status(500).json({
             error: "Failed to retrieve data from database",
         });
@@ -116,32 +122,43 @@ app.post("/song/get-audio", async (req, res) => {
 app.post("/song/get-image", async (req, res) => {
     const body = req.body;
     const bucketName = "pattakit-spotify";
+    console.log("Image Link: " + body.image_link);
 
     try {
         const audioPath = `songs/image/${body.image_link}`;
 
-        const params = {
+        const audioParams = {
             Bucket: bucketName,
             Key: audioPath,
         };
 
-        s3.getObject(params, (err, data) => {
+        s3.getObject(audioParams, (err, data) => {
             if (err) {
                 console.log(err);
                 res.status(500).send("Error fetching file from S3");
                 return;
             }
 
-            res.setHeader("Content-Type", "audio/mpeg");
+            res.setHeader("Content-Type", "audio/jpeg");
             res.setHeader("Content-Length", data.ContentLength);
             res.send(data.Body);
         });
     } catch (err) {
-        console.log("Error");
+        console.log("Error Get Image");
         res.status(500).json({
             error: "Failed to retrieve data from database",
         });
     }
+});
+
+app.post("/song/get-recommendations", async (req, res) => {
+    const body = req.body;
+    res.json([
+        {
+            title: "Song Recommendations",
+            songs: ["44a075b3-3526-40f1-ab97-dacfb9041c13", "45c0abdd-7a90-4e85-8e41-df8606dea75b", "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"],
+        },
+    ]);
 });
 
 // Endpoint to fetch metadata
