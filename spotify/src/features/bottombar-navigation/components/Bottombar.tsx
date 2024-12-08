@@ -1,6 +1,6 @@
 import "./Bottombar.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import current from "../../../data/current.json";
 
@@ -25,6 +25,7 @@ import InputBar from "./InputBar";
 import number_to_string from "../../../utils/second_to_string";
 
 interface Props {
+    audio: HTMLAudioElement | null;
     playing: boolean;
     setPlaying: (play: boolean) => void;
     progress: number;
@@ -36,7 +37,8 @@ interface Props {
     setNowPlayingBar: (playing: boolean) => void;
 }
 
-function Sidebar({
+function Bottombar({
+    audio,
     playing,
     setPlaying,
     progress,
@@ -47,8 +49,26 @@ function Sidebar({
     nowPlayingBar,
     setNowPlayingBar,
 }: Props) {
+    const [lastVolume, setLastVolume] = useState(0);
     const [volume, setVolume] = useState(50);
+    const [volumeOff, setVolumeOff] = useState(false);
     const [songImageHover, setSongImageHover] = useState(false);
+
+    useEffect(() => {
+        if (audio == null) return;
+        audio.volume = volume / 100;
+    }, [volume]);
+
+    useEffect(() => {
+        if (audio == null) return;
+        if (volumeOff) {
+            setLastVolume(volume);
+            setVolume(0);
+        } else {
+            setVolume(lastVolume);
+            setLastVolume(0);
+        }
+    }, [volumeOff]);
 
     return (
         <div className="bottombar">
@@ -115,15 +135,21 @@ function Sidebar({
                 <LyricsIcon />
                 <QueueIcon />
                 <ConnectToDeviceIcon />
-                <VolumeIcon />
-                <InputBar
-                    style={
-                        {
-                            "--volume-bar-transform": String(volume) + "%",
-                        } as any
-                    }
-                    setValue={setVolume}
-                />
+                <div onClick={() => setVolumeOff(!volumeOff)}>
+                    <VolumeIcon />
+                </div>
+                <div className="bottombar-controls-volume" onMouseDown={() => setVolumeOff(false)}>
+                    <InputBar
+                        style={
+                            {
+                                "--volume-bar-transform": String(volume) + "%",
+                            } as any
+                        }
+                        value={volume}
+                        setValue={setVolume}
+
+                    />
+                </div>
                 <MiniplayerIcon />
                 <FullscreenIcon />
             </div>
@@ -131,4 +157,4 @@ function Sidebar({
     );
 }
 
-export default Sidebar;
+export default Bottombar;

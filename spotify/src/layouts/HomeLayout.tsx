@@ -110,6 +110,7 @@ function HomeLayout() {
                 )}
             </div>
             <Bottombar
+                audio={audio}
                 playing={playing}
                 setPlaying={setPlaying}
                 progress={progress}

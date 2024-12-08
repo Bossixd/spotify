@@ -16,10 +16,10 @@ function InputBar({ style, value, setValue }: props) {
             min="0"
             max="100"
             step="1"
-            // onChange={(e) => {
-            //     if (setValue)
-            //         setValue(parseInt(e.target.value));
-            // }}
+            onChange={(e) => {
+                if (setValue)
+                    setValue(parseInt(e.target.value));
+            }}
             value={value}
             style={style as any}
         />
