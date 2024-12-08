@@ -8,7 +8,7 @@ function NowPlayingTitle({ metadata }: Props) {
     return (
         <div className="nowplaying-title">
             <div className="nowplaying-title-text">
-                <div className="nowplaying-title-title">{metadata.title}</div>
+                <div className="nowplaying-title-title">{metadata && metadata.title}</div>
                 <div className="nowplaying-title-author">
                     Rifujin na Magonote
                 </div>

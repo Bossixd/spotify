@@ -4,8 +4,6 @@ const get_audio = (
     songId: string,
     setAllMetadata: (metadata: any) => void
 ) => {
-    return;
-
     let found = false;
 
     setAllMetadata((prevDict: { [songId: string]: any }) => {

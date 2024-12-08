@@ -16,6 +16,7 @@ interface Props {
     setAllImages: (allImages: any) => void;
     allMetadata: any;
     setAllMetadata: (allMetadata: any) => void;
+    setCurrentSongId: (currentSongId: string) => void;
 }
 
 function MainSongs({
@@ -26,6 +27,7 @@ function MainSongs({
     setAllImages,
     allMetadata,
     setAllMetadata,
+    setCurrentSongId,
 }: Props) {
     const [width, setWidth] = useState(0);
     const windowDimensions = useWindowDimensions();
@@ -55,6 +57,7 @@ function MainSongs({
                         setAllImages={setAllImages}
                         allMetadata={allMetadata}
                         setAllMetadata={setAllMetadata}
+                        setCurrentSongId={setCurrentSongId}
                     />
                 ))}
                 <div className="spacer" />

@@ -14,6 +14,7 @@ interface Props {
     setAllImages: (allImages: any) => void;
     allMetadata: any;
     setAllMetadata: (allMetadata: any) => void;
+    setCurrentSongId: (currentSongId: string) => void;
 }
 
 function MainSongsRec({
@@ -23,6 +24,7 @@ function MainSongsRec({
     setAllImages,
     allMetadata,
     setAllMetadata,
+    setCurrentSongId,
 }: Props) {
     const [items, setItems] = useState(1);
     const [recommendationSongs, setRecommendationSongs] = useState([]);
@@ -69,7 +71,7 @@ function MainSongsRec({
             </div>
             <div className="main-songs-rec-items">
                 {recommendationSongs.slice(0, items).map((songId: string) => (
-                    <div className="main-songs-rec-item">
+                    <div className="main-songs-rec-item" id={songId} onClick={() => setCurrentSongId(songId)}>
                         <img
                             className="main-songs-rec-item-image"
                             src={allImages[songId] != undefined ? allImages[songId] : ""}

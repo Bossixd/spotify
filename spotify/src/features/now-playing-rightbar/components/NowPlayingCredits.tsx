@@ -18,7 +18,7 @@ function NowPlayingCredits({ metadata }: Props) {
             {credits.map((person) => (
                 <div className="nowplaying-credits-person">
                     <div className="nowplaying-credits-person-info">
-                        <div className="name">{metadata.name}</div>
+                        <div className="name">{metadata && metadata.name}</div>
                         <div className="description">{person.description}</div>
                     </div>
                     {person.followable && <FollowButton />}

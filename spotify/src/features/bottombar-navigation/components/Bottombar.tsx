@@ -74,10 +74,10 @@ function Sidebar({
                 </div>
                 <div className="bottombar-song-details">
                     <div className="bottombar-song-details-title">
-                        {metadata.title}
+                        {metadata && metadata.title}
                     </div>
                     <div className="bottombar-song-details-author">
-                        {metadata["name"]}
+                        {metadata && metadata.name}
                     </div>
                 </div>
             </div>

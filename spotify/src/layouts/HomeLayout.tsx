@@ -9,40 +9,29 @@ import MusicPlayer from "../features/music-player";
 
 import get_audio from "../utils/get_audio";
 import get_recommendations from "../utils/get_recommendations";
-import get_song_image from "../utils/get_song_image";
-import get_song_metadata from "../utils/get_song_metadata";
-import { get } from "http";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
     const [playing, setPlaying] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
     const [currentSongId, setCurrentSongId] = useState("");
-    const [audioUrl, setAudioUrl] = useState("");
     const [imageUrl, setImageUrl] = useState("");
     const [profileUrl, setProfileUrl] = useState("");
-    const [metadata, setMetadata] = useState({});
 
     useEffect(() => {
-        if (audio !== null) {
-            const getAudioData = get_audio(
-                audio,
-                currentSongId,
-                "44a075b3-3526-40f1-ab97-dacfb9041c13",
-                setAudioUrl,
-                setImageUrl,
-                setProfileUrl,
-                metadata,
-                setMetadata
-            );
-        }
-    }, [audio]);
+        console.log("Current song id: " + currentSongId);
+        console.log(allMetadata);
+        if (audio == null) return;
 
-    useEffect(() => {
-        if (audio !== null) {
-            audio.src = audioUrl;
-        }
-    }, [audioUrl]);
+        get_audio(
+            audio!,
+            currentSongId,
+            setImageUrl,
+            setProfileUrl,
+            allMetadata[currentSongId],
+            allImages[currentSongId]
+        );
+    }, [currentSongId]);
 
     const [nowPlayingBar, setNowPlayingBar] = useState(true);
     const [nowPlayingGrid, setNowPlayingGrid] = useState("right");
@@ -72,32 +61,14 @@ function HomeLayout() {
         get_recommendations(setRecommendations);
     }, []);
 
-    const [allImages, setAllImages] = useState({});
+    const [allImages, setAllImages] = useState<any>({});
     const [allMetadata, setAllMetadata] = useState<any>({});
-
-    // useEffect(() => {
-    //     get_song_metadata("44a075b3-3526-40f1-ab97-dacfb9041c13", setAllMetadata);
-    //     get_song_metadata("6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc", setAllMetadata);
-    //     get_song_metadata("45c0abdd-7a90-4e85-8e41-df8606dea75b", setAllMetadata);
-    // }, []);
-
-    // useEffect(() => {
-    //     if (allMetadata["44a075b3-3526-40f1-ab97-dacfb9041c13"]) {
-    //         get_song_image("44a075b3-3526-40f1-ab97-dacfb9041c13", allMetadata["44a075b3-3526-40f1-ab97-dacfb9041c13"].image_link, setAllImages);
-    //     }
-    //     if (allMetadata["6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"]) {
-    //         get_song_image("6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc", allMetadata["6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"].image_link, setAllImages);
-    //     }
-    //     if (allMetadata["45c0abdd-7a90-4e85-8e41-df8606dea75b"]) {
-    //         get_song_image("45c0abdd-7a90-4e85-8e41-df8606dea75b", allMetadata["45c0abdd-7a90-4e85-8e41-df8606dea75b"].image_link, setAllImages);
-    //     }
-    // }, [allMetadata]);
 
     return (
         <div>
             <MusicPlayer
                 playing={playing}
-                songId="44a075b3-3526-40f1-ab97-dacfb9041c13"
+                songId=""
                 audio={audio}
                 setAudio={setAudio}
                 setProgress={setProgress}
@@ -124,12 +95,13 @@ function HomeLayout() {
                         setAllImages={setAllImages}
                         allMetadata={allMetadata}
                         setAllMetadata={setAllMetadata}
+                        setCurrentSongId={setCurrentSongId}
                     />
                 </div>
                 {nowPlayingBar && (
                     <div className="grid-right">
                         <NowPlaying
-                            metadata={metadata}
+                            metadata={allMetadata[currentSongId]}
                             imageUrl={imageUrl}
                             profileUrl={profileUrl}
                             setNowPlayingBar={setNowPlayingBar}
@@ -145,7 +117,7 @@ function HomeLayout() {
                 maxProgress={
                     audio !== null && audio.duration ? audio.duration : 0
                 }
-                metadata={metadata}
+                metadata={allMetadata[currentSongId]}
                 imageUrl={imageUrl}
                 nowPlayingBar={nowPlayingBar}
                 setNowPlayingBar={setNowPlayingBar}
