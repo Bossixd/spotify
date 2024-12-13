@@ -1,7 +1,10 @@
+import backendUrl from "./backend_url";
+
 const get_recommendations = (
     setRecommendations: (recommendations: any) => void
 ) => {
-        fetch("http://localhost:3001/song/get-recommendations", {
+        console.log(backendUrl);
+        fetch(`http://${backendUrl}/song/get-recommendations`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

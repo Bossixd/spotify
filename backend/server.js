@@ -9,8 +9,19 @@ For Certificate authority download: https://docs.aws.amazon.com/AmazonRDS/latest
 const express = require("express");
 const app = express();
 
+require("dotenv").config();
+
+const allowedOrigins = [`http://${process.env.EC2_IP}`];
+
+const corsConfig = {
+    origin: allowedOrigins,
+    allowedHeaders: ["Authorization", "X-Requested-With", "Content-Type"],
+    maxAge: 86400,
+    credentials: true,
+};
+
 const cors = require("cors");
-app.use(cors());
+app.use(cors(corsConfig));
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -18,8 +29,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const { Client } = require("pg");
 fs = require("fs");
-
-require("dotenv").config();
 
 const AWS = require("aws-sdk");
 AWS.config.update({
@@ -156,7 +165,11 @@ app.post("/song/get-recommendations", async (req, res) => {
     res.json([
         {
             title: "Song Recommendations",
-            songs: ["44a075b3-3526-40f1-ab97-dacfb9041c13", "45c0abdd-7a90-4e85-8e41-df8606dea75b", "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc"],
+            songs: [
+                "44a075b3-3526-40f1-ab97-dacfb9041c13",
+                "45c0abdd-7a90-4e85-8e41-df8606dea75b",
+                "6551ff8f-2fbc-4706-a8db-cf3e6f0c8ffc",
+            ],
         },
     ]);
 });

@@ -1,4 +1,4 @@
-import { json } from "stream/consumers";
+import backendUrl from "./backend_url";
 
 const get_audio = (
     songId: string,
@@ -15,7 +15,7 @@ const get_audio = (
 
     if (found) return;
 
-    fetch("http://localhost:3001/song/get-metadata", {
+    fetch(`http://${backendUrl}/song/get-metadata`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

@@ -1,9 +1,11 @@
+import backendUrl from "./backend_url";
+
 const get_song_image = (
     songId: string,
     image_link: string,
     setAllImages: (imageUrl: any) => void,
 ) => {
-    fetch("http://localhost:3001/song/get-image", {
+    fetch(`http://${backendUrl}/song/get-image`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

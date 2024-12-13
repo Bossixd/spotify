@@ -1,4 +1,4 @@
-import { json } from "stream/consumers";
+import backendUrl from "./backend_url";
 
 const get_audio = (
     audio: HTMLAudioElement,
@@ -12,7 +12,7 @@ const get_audio = (
         console.log("inside");
         console.log(metadata);
         setImageUrl(imageUrl);
-        fetch("http://localhost:3001/song/get-audio", {
+        fetch(`http://${backendUrl}/song/get-audio`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const get_audio = (
                 audio.load();
             })
             .then(() => {
-                return fetch("http://localhost:3001/artists/get-image", {
+                return fetch(`http://${backendUrl}/artists/get-image`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
