@@ -12,6 +12,7 @@ import get_recommendations from "../utils/get_recommendations";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
+    const [loading, setLoading] = React.useState(true);
     const [playing, setPlaying] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
     const [currentSongId, setCurrentSongId] = useState("");
@@ -19,15 +20,18 @@ function HomeLayout() {
     const [profileUrl, setProfileUrl] = useState("");
 
     useEffect(() => {
-        console.log("Current song id: " + currentSongId);
-        console.log(allMetadata);
         if (audio == null) return;
+
+        setPlaying(false);
+        audio.currentTime = 0;
+        setLoading(true);
 
         get_audio(
             audio!,
             currentSongId,
             setImageUrl,
             setProfileUrl,
+            setLoading,
             allMetadata[currentSongId],
             allImages[currentSongId]
         );
@@ -122,6 +126,7 @@ function HomeLayout() {
                 imageUrl={imageUrl}
                 nowPlayingBar={nowPlayingBar}
                 setNowPlayingBar={setNowPlayingBar}
+                loading={loading}
             />
         </div>
     );

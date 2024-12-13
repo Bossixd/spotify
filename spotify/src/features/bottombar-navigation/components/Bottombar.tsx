@@ -11,6 +11,7 @@ import ConnectToDeviceIcon from "../../../assets/svg/connect-to-device-icon";
 import VolumeIcon from "../../../assets/svg/volume-icon";
 import MiniplayerIcon from "../../../assets/svg/miniplayer-icon";
 import FullscreenIcon from "../../../assets/svg/fullscreen-icon";
+import PauseIcon from "../../../assets/svg/pause-icon";
 
 import PlayIcon from "../../../assets/svg/play-icon";
 import NextSongIcon from "../../../assets/svg/next-song-icon";
@@ -35,6 +36,7 @@ interface Props {
     imageUrl: string;
     nowPlayingBar: boolean;
     setNowPlayingBar: (playing: boolean) => void;
+    loading: boolean;
 }
 
 function Bottombar({
@@ -48,6 +50,7 @@ function Bottombar({
     imageUrl,
     nowPlayingBar,
     setNowPlayingBar,
+    loading,
 }: Props) {
     const [lastVolume, setLastVolume] = useState(0);
     const [volume, setVolume] = useState(50);
@@ -107,9 +110,12 @@ function Bottombar({
                     <LastSongIcon />
                     <div
                         className="bottombar-audio-controls-player-button"
-                        onClick={() => setPlaying(!playing)}
+                        onClick={() => {
+                            if (loading) return;
+                            setPlaying(!playing)
+                        }}
                     >
-                        <PlayIcon />
+                        {playing ? <PauseIcon /> : <PlayIcon />}
                     </div>
                     <NextSongIcon />
                     <RepeatIcon />
