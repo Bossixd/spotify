@@ -9,6 +9,7 @@ import MusicPlayer from "../features/music-player";
 
 import get_audio from "../utils/get_audio";
 import get_recommendations from "../utils/get_recommendations";
+import MainPlaylist from "../features/main-playlist";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -68,6 +69,12 @@ function HomeLayout() {
     const [allImages, setAllImages] = useState<any>({});
     const [allMetadata, setAllMetadata] = useState<any>({});
 
+    /* 
+        1. Make Main Playlist UI (May keep track of screen using some kind of enum)
+        2. Make sidebar playlist contain many images and link to db
+        3. Make main connedted to playlist
+    */
+
     return (
         <div>
             <MusicPlayer
@@ -91,7 +98,7 @@ function HomeLayout() {
                     <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
                 </div>
                 <div className="grid-main">
-                    <MainSongs 
+                    {/* <MainSongs 
                         nowPlayingBarOpen={nowPlayingBar}
                         sideBarOpen={sideBar}
                         recommendations={recommendations}
@@ -100,7 +107,8 @@ function HomeLayout() {
                         allMetadata={allMetadata}
                         setAllMetadata={setAllMetadata}
                         setCurrentSongId={setCurrentSongId}
-                    />
+                    /> */}
+                    <MainPlaylist />
                 </div>
                 {nowPlayingBar && (
                     <div className="grid-right">

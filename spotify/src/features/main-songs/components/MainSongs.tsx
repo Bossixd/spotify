@@ -4,8 +4,6 @@ import MainSongsHeader from "./MainSongsHeader";
 import MainSongsItems from "./MainSongsItems";
 import MainSongsRec from "./MainSongsRec";
 
-import recommendations from "../../../data/recommendations.json";
-
 import useWindowDimensions from "../../../utils/use_window_dimensions";
 
 interface Props {

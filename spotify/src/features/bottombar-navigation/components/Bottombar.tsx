@@ -112,7 +112,7 @@ function Bottombar({
                         className="bottombar-audio-controls-player-button"
                         onClick={() => {
                             if (loading) return;
-                            setPlaying(!playing)
+                            setPlaying(!playing);
                         }}
                     >
                         {playing ? <PauseIcon /> : <PlayIcon />}
@@ -144,7 +144,10 @@ function Bottombar({
                 <div onClick={() => setVolumeOff(!volumeOff)}>
                     <VolumeIcon />
                 </div>
-                <div className="bottombar-controls-volume" onMouseDown={() => setVolumeOff(false)}>
+                <div
+                    className="bottombar-controls-volume"
+                    onMouseDown={() => setVolumeOff(false)}
+                >
                     <InputBar
                         style={
                             {
@@ -153,7 +156,6 @@ function Bottombar({
                         }
                         value={volume}
                         setValue={setVolume}
-
                     />
                 </div>
                 <MiniplayerIcon />

@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import "./Sidebar.css";
 
 import SearchIcon from "../../../assets/svg/search-icon";
-import RecentIcon from "../../../assets/svg/recent-icon";
+import RecentIcon from "../../../assets/svg/menu-icon";
 
 function SidebarSearch() {
     const [searching, setSearching] = useState(false);
