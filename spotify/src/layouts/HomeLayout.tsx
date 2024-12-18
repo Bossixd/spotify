@@ -10,6 +10,7 @@ import MusicPlayer from "../features/music-player";
 import get_audio from "../utils/get_audio";
 import get_recommendations from "../utils/get_recommendations";
 import MainPlaylist from "../features/main-playlist";
+import useWindowDimensions from "../utils/use_window_dimensions";
 
 function HomeLayout() {
     const [audio, setAudio] = React.useState<HTMLAudioElement | null>(null);
@@ -75,6 +76,21 @@ function HomeLayout() {
         3. Make main connedted to playlist
     */
 
+    const [width, setWidth] = useState(0);
+    const windowDimensions = useWindowDimensions();
+
+    useEffect(() => {
+        setWidth(
+            windowDimensions.width -
+                (sideBar ? 420 : 72) -
+                (nowPlayingBar ? 420 : 0) -
+                16 -
+                10 -
+                16 -
+                32
+        );
+    }, [windowDimensions, sideBar, nowPlayingBar]);
+
     return (
         <div>
             <MusicPlayer
@@ -99,8 +115,7 @@ function HomeLayout() {
                 </div>
                 <div className="grid-main">
                     {/* <MainSongs 
-                        nowPlayingBarOpen={nowPlayingBar}
-                        sideBarOpen={sideBar}
+                        width={width}
                         recommendations={recommendations}
                         allImages={allImages}
                         setAllImages={setAllImages}
@@ -108,7 +123,9 @@ function HomeLayout() {
                         setAllMetadata={setAllMetadata}
                         setCurrentSongId={setCurrentSongId}
                     /> */}
-                    <MainPlaylist />
+                    <MainPlaylist 
+                        width={width}
+                    />
                 </div>
                 {nowPlayingBar && (
                     <div className="grid-right">

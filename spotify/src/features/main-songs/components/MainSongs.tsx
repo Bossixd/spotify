@@ -7,8 +7,7 @@ import MainSongsRec from "./MainSongsRec";
 import useWindowDimensions from "../../../utils/use_window_dimensions";
 
 interface Props {
-    nowPlayingBarOpen: boolean;
-    sideBarOpen: boolean;
+    width: number;
     recommendations: any;
     allImages: any;
     setAllImages: (allImages: any) => void;
@@ -18,8 +17,7 @@ interface Props {
 }
 
 function MainSongs({
-    nowPlayingBarOpen,
-    sideBarOpen,
+    width,
     recommendations,
     allImages,
     setAllImages,
@@ -27,20 +25,7 @@ function MainSongs({
     setAllMetadata,
     setCurrentSongId,
 }: Props) {
-    const [width, setWidth] = useState(0);
     const windowDimensions = useWindowDimensions();
-
-    useEffect(() => {
-        setWidth(
-            windowDimensions.width -
-                (sideBarOpen ? 420 : 72) -
-                (nowPlayingBarOpen ? 420 : 0) -
-                16 -
-                10 -
-                16 -
-                32
-        );
-    }, [windowDimensions, sideBarOpen, nowPlayingBarOpen]);
 
     return (
         <div className="main-songs">

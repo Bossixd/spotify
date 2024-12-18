@@ -2,13 +2,20 @@ import "./MainPlaylist.css";
 
 import MainPlaylistHeader from "./MainPlaylistHeader";
 import MainPlaylistBody from "./MainPlaylistBody";
+import { useEffect } from "react";
 
-function MainPlaylist() {
+interface Props {
+    width: number;
+}
+
+function MainPlaylist({ width }: Props) {
     return (
         <div className="main-playlist">
             <div className="main-playlist-main">
-                <MainPlaylistHeader />
-                <MainPlaylistBody />
+                {/* <MainPlaylistHeader /> */}
+                <MainPlaylistBody 
+                    width={width}
+                />
             </div>
         </div>
     );
