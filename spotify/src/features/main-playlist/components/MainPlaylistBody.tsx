@@ -32,7 +32,6 @@ function MainPlaylistBody({ width }: Props) {
 
     useEffect(() => {
         const w = width - 50 - 12 - 16 - 16 - 12 - 12 - 12;
-        console.log("w: " + w);
         if (includeAlbum && includeDate) {
             setTitleWidth(w / 2);
             setAlbumWidth(w / 4);

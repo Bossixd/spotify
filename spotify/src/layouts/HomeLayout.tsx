@@ -70,12 +70,6 @@ function HomeLayout() {
     const [allImages, setAllImages] = useState<any>({});
     const [allMetadata, setAllMetadata] = useState<any>({});
 
-    /* 
-        1. Make Main Playlist UI (May keep track of screen using some kind of enum)
-        2. Make sidebar playlist contain many images and link to db
-        3. Make main connedted to playlist
-    */
-
     const [width, setWidth] = useState(0);
     const windowDimensions = useWindowDimensions();
 
@@ -114,7 +108,7 @@ function HomeLayout() {
                     <Sidebar sideBar={sideBar} setSideBar={setSideBar} />
                 </div>
                 <div className="grid-main">
-                    {/* <MainSongs 
+                    <MainSongs 
                         width={width}
                         recommendations={recommendations}
                         allImages={allImages}
@@ -122,10 +116,10 @@ function HomeLayout() {
                         allMetadata={allMetadata}
                         setAllMetadata={setAllMetadata}
                         setCurrentSongId={setCurrentSongId}
-                    /> */}
-                    <MainPlaylist 
-                        width={width}
                     />
+                    {/* <MainPlaylist 
+                        width={width}
+                    /> */}
                 </div>
                 {nowPlayingBar && (
                     <div className="grid-right">

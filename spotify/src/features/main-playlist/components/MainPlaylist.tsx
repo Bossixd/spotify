@@ -12,10 +12,8 @@ function MainPlaylist({ width }: Props) {
     return (
         <div className="main-playlist">
             <div className="main-playlist-main">
-                {/* <MainPlaylistHeader /> */}
-                <MainPlaylistBody 
-                    width={width}
-                />
+                <MainPlaylistHeader width={width} />
+                <MainPlaylistBody width={width} />
             </div>
         </div>
     );

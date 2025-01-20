@@ -4,8 +4,6 @@ import MainSongsHeader from "./MainSongsHeader";
 import MainSongsItems from "./MainSongsItems";
 import MainSongsRec from "./MainSongsRec";
 
-import useWindowDimensions from "../../../utils/use_window_dimensions";
-
 interface Props {
     width: number;
     recommendations: any;
@@ -25,8 +23,6 @@ function MainSongs({
     setAllMetadata,
     setCurrentSongId,
 }: Props) {
-    const windowDimensions = useWindowDimensions();
-
     return (
         <div className="main-songs">
             <MainSongsHeader />
